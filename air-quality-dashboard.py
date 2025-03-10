@@ -12,26 +12,7 @@ import plotly.graph_objects as go
 # Title page
 st.set_page_config(page_title=" Air Quality Analysis by Geralda Livia")
 
-# ID GDrive
-file_id = "11MUFnACVg1Lxh05u7RRb7bEaK-RJTJYh"
-output = "data.csv"
-url = f'https://drive.google.com/uc?id={file_id}'
-# Download data
-@st.cache_data
-def load_data():
-    # Download file
-    gdown.download(url, output, quiet=False)
-    data = pd.read_csv(output)
-    return data
-try:
-    data = load_data()
-    st.write(f"Data berhasil dimuat: {data.shape[0]} baris")
-    st.dataframe(data.head())
-except Exception as e:
-    st.error(f"Error: {e}")
-
-
-# Load dataset
+# Load dataset (local)
 #data = pd.read_csv(r"D:\ML Engineer DBS Foundation X Dicoding\latihan_python\all_data_air_quality.csv", encoding='utf-8', engine='python')
 
 # Title of the dashboard
@@ -55,7 +36,23 @@ This project aims to analyze air quality data from Dongsi and Wanliu stations in
 2. Is there a correlation between meteorological factors (TEMP, DEWP and PRES) and PM10 concentration levels at the two stations?        
 """)
 
-
+# ID GDrive
+file_id = "11MUFnACVg1Lxh05u7RRb7bEaK-RJTJYh"
+output = "data.csv"
+url = f'https://drive.google.com/uc?id={file_id}'
+# Download data
+@st.cache_data
+def load_data():
+    # Download file
+    gdown.download(url, output, quiet=False)
+    data = pd.read_csv(output)
+    return data
+try:
+    data = load_data()
+    st.write(f"Success Load The Data {data.shape[0]} baris")
+    st.dataframe(data.head())
+except Exception as e:
+    st.error(f"Error: {e}")
 # Display raw data sample
 with st.expander("Dataset Overview"):
     st.dataframe(data.head())
