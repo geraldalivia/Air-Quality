@@ -38,9 +38,6 @@ Raw Dataset air quality from [Dicoding Air Quality](https://air-quality-geraldal
    ```
    pipenv shell
    ```
-   ```
-   pip install -r requirements.txt
-   ```
 ### Install the required packages
    The packages needed to run the analysis on both Colab and the dashboard
    ```
